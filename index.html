@@ -7,163 +7,336 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(135deg, #0D1117 0%, #1e1e2f 100%);
+      background: linear-gradient(135deg, #0a0b1a 0%, #1c2526 100%);
       color: #e5e7eb;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
+      position: relative;
+      cursor: none;
     }
     .glow {
-      box-shadow: 0 0 20px rgba(255, 121, 198, 0.7), 0 0 40px rgba(121, 255, 151, 0.5);
+      box-shadow: 0 0 15px rgba(255, 121, 198, 0.9), 0 0 30px rgba(121, 255, 151, 0.7);
     }
-    .hover-scale:hover {
-      transform: scale(1.1);
-      transition: transform 0.3s ease;
+    .hover-effect:hover {
+      transform: scale(1.05) rotate(2deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 25px rgba(255, 121, 198, 1), 0 0 50px rgba(121, 255, 151, 0.5);
     }
     .section-container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 3rem 1.5rem;
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(80px);
+      position: relative;
+      z-index: 10;
+    }
+    .card {
+      background: rgba(20, 20, 30, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      border: 2px solid transparent;
+      animation: rgbBorder 5s linear infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255, 121, 198, 0.1), rgba(121, 255, 151, 0.1));
+      opacity: 0.3;
+      z-index: -1;
+    }
+    @keyframes rgbBorder {
+      0% { border-color: #ff79c6; box-shadow: 0 0 20px #ff79c6; }
+      33% { border-color: #79ff97; box-shadow: 0 0 20px #79ff97; }
+      66% { border-color: #8be9fd; box-shadow: 0 0 20px #8be9fd; }
+      100% { border-color: #ff79c6; box-shadow: 0 0 20px #ff79c6; }
     }
     .title-typewriter {
       overflow: hidden;
       white-space: nowrap;
-      border-right: 3px solid #ff79c6;
+      border-right: 4px solid #ff79c6;
+      animation: blink 0.7s step-end infinite;
+      background: linear-gradient(90deg, #ff79c6, #79ff97, #8be9fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .rgb-border {
-      border: 2px solid;
-      border-image: linear-gradient(45deg, #ff79c6, #79ff97, #8be9fd) 1;
-      animation: rgbGlow 3s linear infinite;
-    }
-    @keyframes rgbGlow {
-      0% { border-image: linear-gradient(45deg, #ff79c6, #79ff97, #8be9fd) 1; }
-      50% { border-image: linear-gradient(45deg, #79ff97, #8be9fd, #ff79c6) 1; }
-      100% { border-image: linear-gradient(45deg, #ff79c6, #79ff97, #8be9fd) 1; }
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
     .particle {
       position: absolute;
-      width: 5px;
-      height: 5px;
-      background: #ff79c6;
       border-radius: 50%;
-      opacity: 0.5;
-      animation: float 10s infinite;
+      opacity: 0.7;
+      animation: float 7s linear infinite;
+      z-index: 1;
     }
     @keyframes float {
-      0% { transform: translateY(0); opacity: 0.5; }
-      50% { opacity: 0.8; }
-      100% { transform: translateY(-100vh); opacity: 0; }
+      0% { transform: translateY(0); opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-150vh); opacity: 0; }
+    }
+    .header {
+      background: rgba(20, 20, 30, 0.9);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid transparent;
+      animation: rgbBorder 5s linear infinite;
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      background: linear-gradient(45deg, #ff79c6, #79ff97, #8be9fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(255, 121, 198, 0.8);
+    }
+    .nav-link:hover {
+      background: linear-gradient(45deg, #ff79c6, #79ff97);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transform: translateY(-2px);
+    }
+    .language-toggle {
+      background: rgba(20, 20, 30, 0.9);
+      border: 2px solid #ff79c6;
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+      color: #e5e7eb;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .language-toggle:hover {
+      background: #ff79c6;
+      color: #0a0b1a;
+      border-color: #79ff97;
+    }
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff79c6, transparent);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+    .custom-cursor.hovered {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, #79ff97, transparent);
     }
   </style>
 </head>
 <body class="min-h-screen relative">
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
   <!-- Particle Background -->
   <div id="particles" class="fixed inset-0 pointer-events-none"></div>
 
+  <!-- Header with Logo and Language Toggle -->
+  <header class="header flex justify-between items-center">
+    <div class="logo">🌸 WangYi's Neon Realm</div>
+    <nav class="flex gap-6 items-center">
+      <a href="#about" class="text-gray-300 hover:nav-link transition-all duration-300">About</a>
+      <a href="#tech" class="text-gray-300 hover:nav-link transition-all duration-300">Tech</a>
+      <a href="#discord" class="text-gray-300 hover:nav-link transition-all duration-300">Discord</a>
+      <a href="#github" class="text-gray-300 hover:nav-link transition-all duration-300">GitHub</a>
+      <a href="#contact" class="text-gray-300 hover:nav-link transition-all duration-300">Contact</a>
+      <select id="language-toggle" class="language-toggle" aria-label="Select Language">
+        <option value="en">English</option>
+        <option value="vi">Tiếng Việt</option>
+      </select>
+    </nav>
+  </header>
+
   <!-- Banner -->
-  <div class="section-container">
-    <img src="./images/castorice3.jpg" alt="Banner" class="w-full rounded-2xl glow hover-scale rgb-border" />
+  <div class="section-container mt-20">
+    <img src="./images/castorice3.jpg" alt="Banner" class="w-full rounded-2xl glow hover-effect parallax-img card" />
   </div>
 
   <!-- Title -->
-  <div class="text-center mb-12">
-    <h1 class="text-5xl md:text-6xl font-bold text-pink-400 title-typewriter">🌸 WangYi / 王毅</h1>
-    <p class="text-xl md:text-2xl italic text-gray-400 mt-4 animate-pulse">“The Unemployed Ohio Final Boss 🇺🇸💀”</p>
+  <div class="text-center mb-16">
+    <h1 class="text-5xl md:text-7xl font-extrabold title-typewriter">🌸 WangYi / 王毅</h1>
+    <p class="text-xl md:text-2xl italic text-gray-300 mt-4 animate-pulse" data-i18n="title-quote">“The Unemployed Ohio Final Boss 🇺🇸💀”</p>
   </div>
 
   <!-- About Me -->
-  <div class="section-container">
-    <div class="flex flex-col md:flex-row gap-8 bg-gray-800 bg-opacity-50 rounded-2xl p-6 rgb-border">
+  <div id="about" class="section-container">
+    <div class="card flex flex-col md:flex-row gap-8 p-8">
       <div class="md:w-2/3">
-        <h2 class="text-3xl font-semibold text-purple-400 mb-4">☕ 关于我 | About Me</h2>
-        <ul class="space-y-3 text-gray-300 text-lg">
-          <li><strong>📛 名字 Name:</strong> WangYi / 王毅</li>
-          <li><strong>🗺️ 所在地 Location:</strong> Vietnam 越南</li>
-          <li><strong>🐱 称呼 Pronouns:</strong> 小喵 (Xiǎo Miāo)</li>
-          <li><strong>🏠 状态 Status:</strong> NEET / 在家蹲</li>
-          <li><strong>🌐 语言 Languages:</strong> Vietnamese, English, 中文</li>
-          <li><strong>❤️ 我爱 I Love:</strong> Lumi</li>
+        <h2 class="text-4xl font-bold text-purple-300 mb-6" data-i18n="about-title">☕ 关于我 | About Me</h2>
+        <ul class="space-y-4 text-gray-200 text-lg">
+          <li><strong class="text-pink-300" data-i18n="about-name-label">📛 名字 Name:</strong> WangYi / 王毅</li>
+          <li><strong class="text-pink-300" data-i18n="about-location-label">🗺️ 所在地 Location:</strong> <span data-i18n="about-location">Vietnam 越南</span></li>
+          <li><strong class="text-pink-300" data-i18n="about-pronouns-label">🐱 称呼 Pronouns:</strong> 小喵 (Xiǎo Miāo)</li>
+          <li><strong class="text-pink-300" data-i18n="about-status-label">🏠 状态 Status:</strong> <span data-i18n="about-status">NEET / 在家蹲</span></li>
+          <li><strong class="text-pink-300" data-i18n="about-languages-label">🌐 语言 Languages:</strong> <span data-i18n="about-languages">Vietnamese, English, 中文</span></li>
+          <li><strong class="text-pink-300" data-i18n="about-love-label">❤️ 我爱 I Love:</strong> Lumi</li>
         </ul>
       </div>
       <div class="md:w-1/3 flex justify-center">
-        <img src="./images/jujingyi1.jpg" alt="Profile" class="w-48 md:w-56 rounded-2xl glow hover-scale" />
+        <img src="./images/jujingyi1.jpg" alt="Profile" class="w-56 md:w-72 rounded-2xl glow hover-effect parallax-img" />
       </div>
     </div>
   </div>
 
   <!-- Tech Interests -->
-  <div class="section-container">
-    <div class="flex flex-col md:flex-row gap-8 bg-gray-800 bg-opacity-50 rounded-2xl p-6 rgb-border">
+  <div id="tech" class="section-container">
+    <div class="card flex flex-col md:flex-row gap-8 p-8">
       <div class="md:w-2/3">
-        <h2 class="text-3xl font-semibold text-purple-400 mb-4">💡 技术 & 兴趣 | Tech & Interests</h2>
-        <ul class="space-y-3 text-gray-300 text-lg">
-          <li>😴 懒惰，但热爱技术</li>
-          <li>🎭 动漫、Cosplay、游戏脚本</li>
-          <li>👾 专注于 Discord Bot、Web API、前端界面</li>
-          <li>🌈 “我只是随便写点奇怪代码，欣赏 RGB 灯光而已~”</li>
+        <h2 class="text-4xl font-bold text-purple-300 mb-6" data-i18n="tech-title">💡 技术 & 兴趣 | Tech & Interests</h2>
+        <ul class="space-y-4 text-gray-200 text-lg">
+          <li data-i18n="tech-item1">😴 懒惰，但热爱技术</li>
+          <li data-i18n="tech-item2">🎭 动漫、Cosplay、游戏脚本</li>
+          <li data-i18n="tech-item3">👾 专注于 Discord Bot、Web API、前端界面</li>
+          <li data-i18n="tech-item4">🌈 “我只是随便写点奇怪代码，欣赏 RGB 灯光而已~”</li>
         </ul>
       </div>
       <div class="md:w-1/3 flex justify-center">
-        <img src="./images/castorice1.jpg" alt="Tech" class="w-48 md:w-56 rounded-2xl glow hover-scale" />
+        <img src="./images/castorice1.jpg" alt="Tech" class="w-56 md:w-72 rounded-2xl glow hover-effect parallax-img" />
       </div>
     </div>
   </div>
 
   <!-- Live Discord Status -->
-  <div class="section-container text-center">
-    <h2 class="text-3xl font-semibold text-green-400 mb-4">🟢 Discord 状态 | Live Discord Status</h2>
+  <div id="discord" class="section-container text-center">
+    <h2 class="text-4xl font-bold text-green-300 mb-6" data-i18n="discord-title">🟢 Discord 状态 | Live Discord Status</h2>
     <a href="https://discord.com/users/1391995229241868459" target="_blank">
-      <img src="https://lanyard.cnrad.dev/api/1391995229241868459?theme=dark&bg=1e1e2f&animated=true&hideDiscrim=true&borderRadius=12px&idleMessage=%E6%AD%A3%E5%9C%A8%E5%8F%91%E5%91%86..." alt="Discord Status" class="mx-auto hover-scale rgb-border" style="width: 500px;" />
+      <img src="https://lanyard.cnrad.dev/api/1391995229241868459?theme=dark&bg=1e1e2f&animated=true&hideDiscrim=true&borderRadius=12px&idleMessage=%E6%AD%A3%E5%9C%A8%E5%8F%91%E5%91%86..." alt="Discord Status" class="mx-auto hover-effect card" style="width: 550px;" />
     </a>
   </div>
 
   <!-- GitHub Stats -->
-  <div class="section-container text-center">
-    <h2 class="text-3xl font-semibold text-purple-400 mb-4">📊 GitHub 统计 | GitHub Stats</h2>
-    <div class="flex flex-col md:flex-row justify-center gap-4">
-      <img src="https://github-readme-stats.vercel.app/api?username=wangyi68&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6&icon_color=79ff97" alt="GitHub Stats" class="w-full md:w-1/2 hover-scale" />
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangyi68&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6" alt="Top Languages" class="w-full md:w-1/2 hover-scale" />
+  <div id="github" class="section-container text-center">
+    <h2 class="text-4xl font-bold text-purple-300 mb-6" data-i18n="github-title">📊 GitHub 统计 | GitHub Stats</h2>
+    <div class="flex flex-col md:flex-row justify-center gap-6">
+      <img src="https://github-readme-stats.vercel.app/api?username=wangyi68&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6&icon_color=79ff97" alt="GitHub Stats" class="w-full md:w-1/2 hover-effect card" />
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangyi68&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6" alt="Top Languages" class="w-full md:w-1/2 hover-effect card" />
     </div>
   </div>
 
   <!-- Contact Section -->
-  <div class="section-container">
-    <div class="flex flex-col md:flex-row gap-8 bg-gray-800 bg-opacity-50 rounded-2xl p-6 rgb-border">
+  <div id="contact" class="section-container">
+    <div class="card flex flex-col md:flex-row gap-8 p-8">
       <div class="md:w-2/3">
-        <h2 class="text-3xl font-semibold text-purple-400 mb-4">📫 联系我 | Contact Me</h2>
-        <ul class="space-y-3 text-gray-300 text-lg">
-          <li><strong>💬 Discord:</strong> <a href="https://discord.com/users/1391995229241868459" class="text-pink-400 hover:underline">@WangYi#0001</a> <em>(最快速方式)</em></li>
-          <li><strong>📧 Email:</strong> <a href="mailto:wangyiisyi20@gmail.com" class="text-pink-400 hover:underline">wangyiisyi20@gmail.com</a></li>
-          <li><strong>🖱️ GitHub:</strong> <a href="https://github.com/wangyi68" class="text-pink-400 hover:underline">wangyi68</a></li>
-          <li><strong>🎮 Steam:</strong> <a href="https://steamcommunity.com/id/MiyagawaMizu" class="text-pink-400 hover:underline">WangYi</a></li>
+        <h2 class="text-4xl font-bold text-purple-300 mb-6" data-i18n="contact-title">📫 联系我 | Contact Me</h2>
+        <ul class="space-y-4 text-gray-200 text-lg">
+          <li><strong class="text-pink-300" data-i18n="contact-discord-label">💬 Discord:</strong> <a href="https://discord.com/users/1391995229241868459" class="text-pink-400 hover:underline hover-effect">WangYi#0001</a> <em data-i18n="contact-discord-note">(最快速方式)</em></li>
+          <li><strong class="text-pink-300" data-i18n="contact-email-label">📧 Email:</strong> <a href="mailto:wangyiisyi20@gmail.com" class="text-pink-400 hover:underline hover-effect">wangyiisyi20@gmail.com</a></li>
+          <li><strong class="text-pink-300" data-i18n="contact-github-label">🖱️ GitHub:</strong> <a href="https://github.com/wangyi68" class="text-pink-400 hover:underline hover-effect">wangyi68</a></li>
+          <li><strong class="text-pink-300" data-i18n="contact-steam-label">🎮 Steam:</strong> <a href="https://steamcommunity.com/id/MiyagawaMizu" class="text-pink-400 hover:underline hover-effect">WangYi</a></li>
         </ul>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <img src="https://komarev.com/ghpvc/?username=wangyi68&color=blueviolet&style=flat-square" alt="Profile Views" class="hover-scale" />
-          <a href="https://github.com/wangyi68"><img src="https://img.shields.io/github/followers/wangyi68?label=关注&style=social" alt="GitHub Follow" class="hover-scale" /></a>
-          <a href="mailto:wangyiisyi20@gmail.com"><img src="https://img.shields.io/badge/Email-联系我-D14836?logo=gmail&logoColor=white" alt="Email" class="hover-scale" /></a>
-          <a href="https://discord.com/users/1391995229241868459"><img src="https://img.shields.io/badge/Discord-聊天吧-7289DA?logo=discord&logoColor=white" alt="Discord" class="hover-scale" /></a>
-          <a href="https://steamcommunity.com/id/MiyagawaMizu"><img src="https://img.shields.io/badge/Steam-加入游戏-1a6a98?logo=steam&logoColor=white" alt="Steam" class="hover-scale" /></a>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <img src="https://komarev.com/ghpvc/?username=wangyi68&color=blueviolet&style=flat-square" alt="Profile Views" class="hover-effect" />
+          <a href="https://github.com/wangyi68"><img src="https://img.shields.io/github/followers/wangyi68?label=关注&style=social" alt="GitHub Follow" class="hover-effect" /></a>
+          <a href="mailto:wangyiisyi20@gmail.com"><img src="https://img.shields.io/badge/Email-联系我-D14836?logo=gmail&logoColor=white" alt="Email" class="hover-effect" /></a>
+          <a href="https://discord.com/users/1391995229241868459"><img src="https://img.shields.io/badge/Discord-聊天吧-7289DA?logo=discord&logoColor=white" alt="Discord" class="hover-effect" /></a>
+          <a href="https://steamcommunity.com/id/MiyagawaMizu"><img src="https://img.shields.io/badge/Steam-加入游戏-1a6a98?logo=steam&logoColor=white" alt="Steam" class="hover-effect" /></a>
         </div>
       </div>
       <div class="md:w-1/3 flex justify-center">
-        <img src="./images/castorice2.jpg" alt="Contact" class="w-48 md:w-56 rounded-2xl glow hover-scale" />
+        <img src="./images/castorice2.jpg" alt="Contact" class="w-56 md:w-72 rounded-2xl glow hover-effect parallax-img" />
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <div class="section-container text-center mt-12">
-    <p class="italic text-gray-400 text-lg">
+  <div class="section-container text-center mt-16">
+    <p class="italic text-gray-300 text-lg md:text-xl" data-i18n="footer-text">
       ✨ 谢谢你来看！让我们一起沉迷 RGB 灯光、动漫，还有那些技术宅小玩意！<br>
       ✨ Thanks for visiting! Let’s geek out over anime, RGB setups, and cursed code.
     </p>
-    <img src="https://media.giphy.com/media/3o7aD2x1k1iO1G2k3u/giphy.gif" alt="Footer GIF" class="mx-auto mt-6 w-40 hover-scale" />
+    <img src="https://media.giphy.com/media/3o7aD2x1k1iO1G2k3u/giphy.gif" alt="Footer GIF" class="mx-auto mt-6 w-52 hover-effect card" />
   </div>
 
   <script>
+    // Language Toggle Data
+    const translations = {
+      en: {
+        'title-quote': '“The Unemployed Ohio Final Boss 🇺🇸💀”',
+        'about-title': '☕ About Me',
+        'about-name-label': '📛 Name:',
+        'about-location-label': '🗺️ Location:',
+        'about-location': 'Vietnam',
+        'about-pronouns-label': '🐱 Pronouns:',
+        'about-status-label': '🏠 Status:',
+        'about-status': 'NEET',
+        'about-languages-label': '🌐 Languages:',
+        'about-languages': 'Vietnamese, English, Chinese',
+        'about-love-label': '❤️ I Love:',
+        'tech-title': '💡 Tech & Interests',
+        'tech-item1': '😴 Lazy but love technology',
+        'tech-item2': '🎭 Anime, Cosplay, Game Scripts',
+        'tech-item3': '👾 Focused on Discord Bots, Web APIs, Frontend UI',
+        'tech-item4': '🌈 “Just writing some weird code and admiring RGB lights~”',
+        'discord-title': '🟢 Live Discord Status',
+        'github-title': '📊 GitHub Stats',
+        'contact-title': '📫 Contact Me',
+        'contact-discord-label': '💬 Discord:',
+        'contact-discord-note': '(Fastest way)',
+        'contact-email-label': '📧 Email:',
+        'contact-github-label': '🖱️ GitHub:',
+        'contact-steam-label': '🎮 Steam:',
+        'footer-text': '✨ Thanks for visiting! Let’s geek out over anime, RGB setups, and cursed code.'
+      },
+      vi: {
+        'title-quote': '“Trùm Cuối Ohio Thất Nghiệp 🇺🇸💀”',
+        'about-title': '☕ Về Tôi',
+        'about-name-label': '📛 Tên:',
+        'about-location-label': '🗺️ Vị trí:',
+        'about-location': 'Việt Nam',
+        'about-pronouns-label': '🐱 Cách xưng hô:',
+        'about-status-label': '🏠 Trạng thái:',
+        'about-status': 'NEET / Ở nhà',
+        'about-languages-label': '🌐 Ngôn ngữ:',
+        'about-languages': 'Tiếng Việt, Tiếng Anh, Tiếng Trung',
+        'about-love-label': '❤️ Tôi yêu:',
+        'tech-title': '💡 Công nghệ & Sở thích',
+        'tech-item1': '😴 Lười biếng nhưng đam mê công nghệ',
+        'tech-item2': '🎭 Anime, Cosplay, Kịch bản game',
+        'tech-item3': '👾 Tập trung vào Discord Bot, Web API, Giao diện người dùng',
+        'tech-item4': '🌈 “Chỉ viết vài đoạn code kỳ lạ và ngắm đèn RGB thôi~”',
+        'discord-title': '🟢 Trạng thái Discord',
+        'github-title': '📊 Thống kê GitHub',
+        'contact-title': '📫 Liên hệ với tôi',
+        'contact-discord-label': '💬 Discord:',
+        'contact-discord-note': '(Cách nhanh nhất)',
+        'contact-email-label': '📧 Email:',
+        'contact-github-label': '🖱️ GitHub:',
+        'contact-steam-label': '🎮 Steam:',
+        'footer-text': '✨ Cảm ơn bạn đã ghé thăm! Hãy cùng đắm chìm trong anime, đèn RGB và những đoạn code kỳ lạ!'
+      }
+    };
+
+    // Language Toggle Logic
+    const languageToggle = document.getElementById('language-toggle');
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        element.textContent = translations[lang][key] || element.textContent;
+      });
+      localStorage.setItem('language', lang);
+      languageToggle.value = lang;
+    }
+    languageToggle.addEventListener('change', () => setLanguage(languageToggle.value));
+    const savedLang = localStorage.getItem('language') || 'en';
+    setLanguage(savedLang);
+
     // Typing effect for title
     const title = document.querySelector('.title-typewriter');
     const text = title.textContent;
@@ -173,42 +346,106 @@
       if (i < text.length) {
         title.textContent += text.charAt(i);
         i++;
-        setTimeout(type, 100);
+        setTimeout(type, 60);
       } else {
         title.style.borderRight = 'none';
       }
     }
-    setTimeout(type, 500);
+    gsap.to(title, { opacity: 1, duration: 0.5, onComplete: () => setTimeout(type, 200) });
 
     // GSAP Scroll Animations
-    gsap.utils.toArray('.section-container').forEach(section => {
+    gsap.utils.toArray('.section-container').forEach((section, index) => {
       gsap.fromTo(section, 
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 80 },
         { 
           opacity: 1, 
           y: 0, 
-          duration: 1, 
-          ease: 'power2.out',
+          duration: 1.5, 
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
+            start: 'top 90%',
+            toggleActions: 'play none none reverse',
+            delay: index * 0.2
           }
         }
       );
+      // Staggered list item animations
+      gsap.from(section.querySelectorAll('li'), {
+        opacity: 0,
+        y: 20,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 90%'
+        }
+      });
+    });
+
+    // Parallax Effect for Images
+    gsap.utils.toArray('.parallax-img').forEach(img => {
+      gsap.to(img, {
+        y: () => window.innerHeight * 0.15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.5
+        }
+      });
+    });
+
+    // Logo Animation
+    gsap.from('.logo', {
+      opacity: 0,
+      scale: 0.5,
+      rotation: 360,
+      duration: 1.5,
+      ease: 'back.out(1.7)'
     });
 
     // Particle Effect
     const particleContainer = document.getElementById('particles');
+    const colors = ['#ff79c6', '#79ff97', '#8be9fd', '#bd93f9'];
     function createParticle() {
       const particle = document.createElement('div');
       particle.classList.add('particle');
       particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.animationDuration = Math.random() * 5 + 5 + 's';
+      particle.style.width = Math.random() * 12 + 5 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.animationDuration = Math.random() * 5 + 3 + 's';
       particleContainer.appendChild(particle);
-      setTimeout(() => particle.remove(), 10000);
+      setTimeout(() => particle.remove(), 7000);
     }
-    setInterval(createParticle, 300);
+    setInterval(createParticle, 80);
+
+    // Smooth Scroll for Nav Links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Custom Cursor
+    const cursor = document.querySelector('.custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('.hover-effect, .nav-link, .language-toggle').forEach(elem => {
+      elem.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+      elem.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
   </script>
 </body>
 </html>
