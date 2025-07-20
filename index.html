@@ -1,143 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WangYi's Neon Realm</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 WangYi | Neon Realm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="min-h-screen relative">
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="loader"></div>
-  </div>
-
-  <!-- Custom Cursor -->
-  <div class="custom-cursor"></div>
-
-  <!-- Particle Background -->
-  <div id="particles" class="fixed inset-0 pointer-events-none"></div>
-
-  <!-- Header with Logo -->
-  <header class="header flex justify-between items-center">
-    <div class="logo">🌸 WangYi's Neon Realm</div>
-    <div class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <img src="./images/castorice3.jpg" alt="Neon Banner" class="banner floating">
+            <h1 class="title">🌸 WangYi / 王毅</h1>
+            <p class="subtitle">"The Unemployed Ohio Final Boss 🇺🇸💀"</p>
+        </header>
+        
+        <!-- About Me Section -->
+        <section class="section neon-border">
+            <h2 class="section-title"><i class="fas fa-user-astronaut"></i> ☕ 关于我 | About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <ul class="info-list">
+                        <li><i class="fas fa-id-card"></i> <strong>名字 Name:</strong> WangYi / 王毅</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>所在地 Location:</strong> Vietnam 越南</li>
+                        <li><i class="fas fa-cat"></i> <strong>称呼 Pronouns:</strong> 小喵 (Xiǎo Miāo)</li>
+                        <li><i class="fas fa-home"></i> <strong>状态 Status:</strong> NEET / 在家蹲</li>
+                        <li><i class="fas fa-language"></i> <strong>语言 Languages:</strong> Vietnamese, English, 中文</li>
+                        <li><i class="fas fa-heart"></i> <strong>我爱 I Love:</strong> Lumi</li>
+                    </ul>
+                </div>
+                <img src="./images/jujingyi1.jpg" alt="WangYi" class="about-image">
+            </div>
+        </section>
+        
+        <!-- Tech & Interests Section -->
+        <section class="section neon-border">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> 💡 技术 & 兴趣 | Tech & Interests</h2>
+            <div class="grid">
+                <div>
+                    <p>😴 懒惰，但热爱技术</p>
+                    <p>🎭 动漫、Cosplay、游戏脚本</p>
+                    <p>👾 专注于 Discord Bot、Web API、前端界面</p>
+                    <p>🌈 "我只是随便写点奇怪代码，欣赏 RGB 灯光而已~"</p>
+                </div>
+                <img src="./images/castorice1.jpg" alt="Tech Interests" class="about-image mobile-center">
+            </div>
+        </section>
+        
+        <!-- Discord Status -->
+        <section class="section neon-border">
+            <h2 class="section-title"><i class="fab fa-discord"></i> 🟢 Discord 状态 | Live Discord Status</h2>
+            <div class="discord-container">
+                <a href="https://discord.com/users/1391995229241868459" target="_blank">
+                    <img src="https://lanyard.cnrad.dev/api/1391995229241868459?theme=dark&bg=1e1e2f&animated=true&hideDiscrim=true&borderRadius=12px&idleMessage=%E6%AD%A3%E5%9C%A8%E5%8F%91%E5%91%86..." alt="Discord Status" class="discord-status">
+                </a>
+            </div>
+        </section>
+        
+        <!-- GitHub Stats -->
+        <section class="section neon-border">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> 📊 GitHub 统计 | GitHub Stats</h2>
+            <div class="stats-container">
+                <!-- Stats Card 1 -->
+                <div class="github-card" onclick="rotateCard(this)">
+                    <div class="card-front">
+                        <img src="https://github-readme-stats.vercel.app/api?username=wangyi68&show_icons=true&custom_title=WangYi's%20GitHub%20Stats&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6&icon_color=79ff97&include_all_commits=true&count_private=true&line_height=24" alt="GitHub Stats">
+                    </div>
+                    <div class="card-back">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                                <div>
+                                    <h4>Total Stars</h4>
+                                    <p>0</p>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-code-commit"></i></div>
+                                <div>
+                                    <h4>Total Commits</h4>
+                                    <p>47</p>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-code-pull-request"></i></div>
+                                <div>
+                                    <h4>Total PRs</h4>
+                                    <p>0</p>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-bug"></i></div>
+                                <div>
+                                    <h4>Total Issues</h4>
+                                    <p>0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="neon-pulse"></div>
+                    </div>
+                </div>
+                
+                <!-- Stats Card 2 -->
+                <div class="github-card" onclick="rotateCard(this)">
+                    <div class="card-front">
+                        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangyi68&layout=compact&custom_title=Most%20Used%20Languages&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6&langs_count=6&exclude_repo=github-readme-stats&size_weight=0.5&count_weight=0.5" alt="Top Languages">
+                    </div>
+                    <div class="card-back">
+                        <h3 class="language-title"><i class="fas fa-code"></i> Language Breakdown</h3>
+                        <div class="language-chart">
+                            <div class="language-item">
+                                <div class="language-info">
+                                    <span class="language-name">JavaScript</span>
+                                    <span class="language-percent">66.41%</span>
+                                </div>
+                                <div class="language-bar">
+                                    <div class="language-progress" style="width: 66.41%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="language-info">
+                                    <span class="language-name">EJS</span>
+                                    <span class="language-percent">13.44%</span>
+                                </div>
+                                <div class="language-bar">
+                                    <div class="language-progress" style="width: 13.44%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="language-info">
+                                    <span class="language-name">HTML</span>
+                                    <span class="language-percent">10.31%</span>
+                                </div>
+                                <div class="language-bar">
+                                    <div class="language-progress" style="width: 10.31%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="language-info">
+                                    <span class="language-name">CSS</span>
+                                    <span class="language-percent">9.84%</span>
+                                </div>
+                                <div class="language-bar">
+                                    <div class="language-progress" style="width: 9.84%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="neon-pulse"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section class="section neon-border">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> 📫 联系我 | Contact Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <ul class="contact-methods">
+                        <li><i class="fab fa-discord contact-icon purple"></i> <strong>Discord:</strong> <a href="https://discord.com/users/1391995229241868459" target="_blank">@WangYi#0001</a> (最快速方式)</li>
+                        <li><i class="fas fa-envelope contact-icon pink"></i> <strong>Email:</strong> <a href="mailto:wangyiisyi20@gmail.com">wangyiisyi20@gmail.com</a></li>
+                        <li><i class="fab fa-github contact-icon blue"></i> <strong>GitHub:</strong> <a href="https://github.com/wangyi68" target="_blank">wangyi68</a></li>
+                        <li><i class="fab fa-steam contact-icon green"></i> <strong>Steam:</strong> <a href="https://steamcommunity.com/id/MiyagawaMizu" target="_blank">WangYi</a></li>
+                    </ul>
+                    
+                    <div class="badges">
+                        <img src="https://komarev.com/ghpvc/?username=wangyi68&color=blueviolet&style=flat-square" alt="Profile Views">
+                        <a href="https://github.com/wangyi68"><img src="https://img.shields.io/github/followers/wangyi68?label=关注&style=social" alt="GitHub Followers"></a>
+                        <a href="mailto:wangyiisyi20@gmail.com"><img src="https://img.shields.io/badge/Email-联系我-D14836?logo=gmail&logoColor=white" alt="Email"></a>
+                        <a href="https://discord.com/users/1391995229241868459"><img src="https://img.shields.io/badge/Discord-聊天吧-7289DA?logo=discord&logoColor=white" alt="Discord"></a>
+                        <a href="https://steamcommunity.com/id/MiyagawaMizu"><img src="https://img.shields.io/badge/Steam-加入游戏-1a6a98?logo=steam&logoColor=white" alt="Steam"></a>
+                    </div>
+                </div>
+                <img src="./images/castorice2.jpg" alt="Contact" class="about-image mobile-center">
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>✨ 谢谢你来看！让我们一起沉迷 RGB 灯光、动漫，还有那些技术宅小玩意！<br>
+               ✨ Thanks for visiting! Let's geek out over anime, RGB setups, and cursed code.</p>
+            <img src="https://media.giphy.com/media/3o7aD2x1k1iO1G2k3u/giphy.gif" width="160" class="footer-gif" alt="Anime GIF">
+        </footer>
     </div>
-  </header>
-
-  <!-- Banner -->
-  <div class="banner section-container">
-    <img src="./images/castorice3.jpg" alt="Banner" class="w-full rounded-2xl glow hover-effect parallax-img card" />
-    <div class="banner-text">
-      🌸 WangYi / 王毅
-      <sub>"The Unemployed Ohio Final Boss 💀"</sub>
-    </div>
-  </div>
-
-  <div class="divider mx-auto w-2/3"></div>
-
-  <!-- About Me -->
-  <div id="about" class="section-container">
-    <div class="card flex flex-col md:flex-row gap-6 p-6">
-      <div class="md:w-2/3">
-        <h2 class="text-3xl font-bold text-purple-300 mb-4">☕ 关于我 | About Me</h2>
-        <ul class="space-y-3 text-gray-200 text-base">
-          <li><strong class="text-pink-300">📛 名字 Name:</strong> WangYi / 王毅</li>
-          <li><strong class="text-pink-300">🗺️ 所在地 Location:</strong> Vietnam 越南</li>
-          <li><strong class="text-pink-300">🐱 称呼 Pronouns:</strong> 小喵 (Xiǎo Miāo)</li>
-          <li><strong class="text-pink-300">🏠 状态 Status:</strong> NEET / 在家蹲</li>
-          <li><strong class="text-pink-300">🌐 语言 Languages:</strong> Vietnamese, English, 中文</li>
-          <li><strong class="text-pink-300">❤️ 我爱 I Love:</strong> Lumi</li>
-        </ul>
-      </div>
-      <div class="md:w-1/3 flex justify-center">
-        <img src="./images/jujingyi1.jpg" alt="Profile" class="w-48 md:w-64 rounded-2xl glow hover-effect parallax-img" />
-      </div>
-    </div>
-  </div>
-
-  <div class="divider mx-auto w-2/3"></div>
-
-  <!-- Tech Interests -->
-  <div id="tech" class="section-container">
-    <div class="card flex flex-col md:flex-row gap-6 p-6">
-      <div class="md:w-2/3">
-        <h2 class="text-3xl font-bold text-purple-300 mb-4">💡 技术 & 兴趣 | Tech & Interests</h2>
-        <ul class="space-y-3 text-gray-200 text-base">
-          <li>😴 懒惰，但热爱技术</li>
-          <li>🎭 动漫、Cosplay、游戏脚本</li>
-          <li>👾 专注于 Discord Bot、Web API、前端界面</li>
-          <li>🌈 “我只是随便写点奇怪代码，欣赏 RGB 灯光而已~”</li>
-        </ul>
-      </div>
-      <div class="md:w-1/3 flex justify-center">
-        <img src="./images/castorice1.jpg" alt="Tech" class="w-48 md:w-64 rounded-2xl glow hover-effect parallax-img" />
-      </div>
-    </div>
-  </div>
-
-  <div class="divider mx-auto w-2/3"></div>
-
-  <!-- Live Discord Status -->
-  <div id="discord" class="section-container text-center">
-    <h2 class="text-3xl font-bold text-green-300 mb-4">🟢 Discord 状态 | Live Discord Status</h2>
-    <a href="https://discord.com/users/1391995229241868459" target="_blank">
-      <img src="https://lanyard.cnrad.dev/api/1391995229241868459?theme=dark&bg=1e1e2f&animated=true&hideDiscrim=true&borderRadius=12px&idleMessage=%E6%AD%A3%E5%9C%A8%E5%8F%91%E5%91%86..." alt="Discord Status" class="mx-auto hover-effect card" style="width: 450px;" />
-    </a>
-  </div>
-
-  <div class="divider mx-auto w-2/3"></div>
-
-  <!-- GitHub Stats -->
-  <div id="github" class="section-container text-center">
-    <h2 class="text-3xl font-bold text-purple-300 mb-4">📊 GitHub 统计 | GitHub Stats</h2>
-    <div class="flex flex-col md:flex-row justify-center gap-4">
-      <img src="https://github-readme-stats.vercel.app/api?username=wangyi68&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6&icon_color=79ff97" alt="GitHub Stats" class="w-full md:w-1/2 hover-effect card" />
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangyi68&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117&title_color=ff79c6" alt="Top Languages" class="w-full md:w-1/2 hover-effect card" />
-    </div>
-  </div>
-
-  <div class="divider mx-auto w-2/3"></div>
-
-  <!-- Contact Section -->
-  <div id="contact" class="section-container">
-    <div class="card flex flex-col md:flex-row gap-6 p-6">
-      <div class="md:w-2/3">
-        <h2 class="text-3xl font-bold text-purple-300 mb-4">📫 联系我 | Contact Me</h2>
-        <ul class="space-y-3 text-gray-200 text-base">
-          <li><strong class="text-pink-300">💬 Discord:</strong> <a href="https://discord.com/users/1391995229241868459" class="text-pink-400 hover:underline hover-effect">WangYi#0001</a> <em>(最快速方式)</em></li>
-          <li><strong class="text-pink-300">📧 Email:</strong> <a href="mailto:wangyiisyi20@gmail.com" class="text-pink-400 hover:underline hover-effect">wangyiisyi20@gmail.com</a></li>
-          <li><strong class="text-pink-300">🖱️ GitHub:</strong> <a href="https://github.com/wangyi68" class="text-pink-400 hover:underline hover-effect">wangyi68</a></li>
-          <li><strong class="text-pink-300">🎮 Steam:</strong> <a href="https://steamcommunity.com/id/MiyagawaMizu" class="text-pink-400 hover:underline hover-effect">WangYi</a></li>
-        </ul>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <img src="https://komarev.com/ghpvc/?username=wangyi68&color=blueviolet&style=flat-square" alt="Profile Views" class="hover-effect" />
-          <a href="https://github.com/wangyi68"><img src="https://img.shields.io/github/followers/wangyi68?label=关注&style=social" alt="GitHub Follow" class="hover-effect" /></a>
-          <a href="mailto:wangyiisyi20@gmail.com"><img src="https://img.shields.io/badge/Email-联系我-D14836?logo=gmail&logoColor=white" alt="Email" class="hover-effect" /></a>
-          <a href="https://discord.com/users/1391995229241868459"><img src="https://img.shields.io/badge/Discord-聊天吧-7289DA?logo=discord&logoColor=white" alt="Discord" class="hover-effect" /></a>
-          <a href="https://steamcommunity.com/id/MiyagawaMizu"><img src="https://img.shields.io/badge/Steam-加入游戏-1a6a98?logo=steam&logoColor=white" alt="Steam" class="hover-effect" /></a>
-        </div>
-      </div>
-      <div class="md:w-1/3 flex justify-center">
-        <img src="./images/castorice2.jpg" alt="Contact" class="w-48 md:w-64 rounded-2xl glow hover-effect parallax-img" />
-      </div>
-    </div>
-  </div>
-
-  <div class="divider mx-auto w-2/3"></div>
-
-  <!-- Footer -->
-  <div class="section-container text-center mt-10">
-    <p class="italic text-gray-300 text-base md:text-lg">
-      ✨ 谢谢你来看！让我们一起沉迷 RGB 灯光、动漫，还有那些技术宅小玩意！<br>
-      ✨ Thanks for visiting! Let’s geek out over anime, RGB setups, and cursed code.
-    </p>
-    <img src="https://media.giphy.com/media/3o7aD2x1k1iO1G2k3u/giphy.gif" alt="Footer GIF" class="mx-auto mt-4 w-40 hover-effect card" />
-  </div>
-
-  <script src="script.js"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
